@@ -10,6 +10,7 @@ void *ft_memcpy(void *dst, const void *src, size_t n)
 		((char*)dst)[i] = ((char*)src)[i]; // TEST IT WELL
 		i++;
 	}
-	((char*)dst)[i] = '\0';
+	if (i != 0)
+		((char*)dst)[i] = '\0';
 	return (dst);
 }
