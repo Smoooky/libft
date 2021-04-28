@@ -9,9 +9,12 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		i++;
 		if (s[i] == ch)
 			return ((char*) &s[i]);
+		i++;
 	}
-	return(NULL);
+	if (s[i] == ch)
+		return ((char*) &s[i]);
+	else
+		return(NULL);
 }

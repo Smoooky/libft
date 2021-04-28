@@ -11,9 +11,9 @@ char	*ft_strrchr(const char *s, int c)
 		i++;
 	while (i != 0)
 	{
-		i--;
 		if (s[i] == ch)
 			return ((char*) &s[i]);
+		i--;
 	}
 	return(NULL);
 }

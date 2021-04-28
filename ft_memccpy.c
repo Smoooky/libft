@@ -5,24 +5,37 @@ void *ft_memccpy(void *dst, const void *src, int c, size_t n)
 	unsigned long i;
 	unsigned char ch;
 
-	ch = (unsigned char)c;
+
+	ch = (unsigned char) c;
 	i = 0;
-	while (i < n)
+	while (i != n)
 	{
-//		printf("%lu\n", i);
-		if (((unsigned char *)src)[i] == ch)
-			return ((unsigned char *) NULL);
 		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 		i++;
+		if (((unsigned char *)src)[i - 1] == ch)
+			return (&((unsigned char *)dst)[i]);
 	}
-	if (i == 0)
-		return ((unsigned char *)NULL);
-	else
-	{
-		((unsigned char *)dst)[i] = '\0';
-		return (dst);
-	}
+	return (NULL);
 }
+
+//	ch = (unsigned char)c;
+//	i = 0;
+//	while (i < n)
+//	{
+//		printf("%lu\n", i);
+//		if (((unsigned char *)src)[i] == ch)
+//			return ((unsigned char *) NULL);
+//		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+//		i++;
+//	}
+//	if (i == 0)
+//		return ((unsigned char *)NULL);
+//	else
+//	{
+//		((unsigned char *)dst)[i] = '\0';
+//		return (dst);
+//	}
+//}
 
 
 
