@@ -1,8 +1,8 @@
 #include "libft.h"
 
-size_t	ft_countlen(char const *str);
-char	*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set);
-char	*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set);
+static size_t	ft_countlen(char const *str);
+static char		*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set);
+static char		*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set);
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -26,7 +26,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (res);
 }
 
-char	*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set)
+static char	*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set)
 {
 	size_t	i;
 	size_t	j;
@@ -66,7 +66,7 @@ char	*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_se
 	return (res);
 }
 
-char	*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set)
+static char	*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set)
 {
 	size_t	i;
 	size_t	j;
@@ -103,7 +103,7 @@ char	*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_s
 	return (res);
 }
 
-size_t	ft_countlen(char const *str)
+static size_t	ft_countlen(char const *str)
 {
 	size_t	i;
 

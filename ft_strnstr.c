@@ -7,14 +7,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	j = 0;
-//	printf("haystack[i] = %c\n", haystack[i]);
-//	printf("needle[j] = %c\n", needle[j]);
-	if (len == 0)
+	if (needle[j] == 0)
 		return ((char *) &haystack[i - j]);
 	while (haystack[i] != '\0' && len != 0)
 	{
-//		printf("i = %lu\n", i);
-//		printf("j = %lu\n", j);
 		if (haystack[i] == needle[j])
 			j++;
 		else
@@ -30,6 +26,4 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
-//	else
-//		return ((char *) &haystack[i - j]);
 }
