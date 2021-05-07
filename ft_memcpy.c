@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void *ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned long	i;
 
@@ -15,5 +15,5 @@ void *ft_memcpy(void *dst, const void *src, size_t n)
 		return (dst);
 	}
 	else
-		return(NULL);
+		return (NULL);
 }

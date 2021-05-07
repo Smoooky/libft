@@ -3,43 +3,20 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	j;
+	size_t	res;
 
+	res = 0;
+	if (!dst || !src)
+		return (0);
+	while (src[res] != '\0')
+		++res;
 	i = 0;
-	j = 0;
-	while (src[i] != '\0')
+	while (src[i] != '\0' && (i + 1) < size)
 	{
-		if (i > (size - 1))
-		{
-			dst[j] = src[i];
-			j++;
-		}
-//		else
-//			dst[i] = '\0';
-		i++;
-//		printf("%s\n", dst);
-//		printf("%lu\n", i);
+		dst[i] = src[i];
+		++i;
 	}
-	dst[i] = '\0';
-	return (i);
+	if (i != 0 || res == 0)
+		dst[i] = '\0';
+	return (res);
 }
-
-
-	//	while (*src != '\0')
-//	{
-//		printf("%lu\n", i);
-//		printf("%lu\n", dstsize);
-//		if (i != dstsize - 1)
-//		{
-//			*dst = *src;
-//			dst++;
-//		}
-//		else
-//			*dst = '\0';
-//		i++;
-//		src++;
-//		*dst = '\0';
-//	}
-//	*dst = *src;
-//	return (i);
-//}

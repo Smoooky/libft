@@ -14,9 +14,7 @@ char	**ft_split(char const *s, char c)
 	count = ft_count_words(s, c);
 	res = (char**)malloc(sizeof(char*)*(count+1));
 	if (NULL == res)
-	{
 		return (NULL);
-	}
 	res[count] = NULL;
 	count = 0;
 	i = 0;
@@ -83,12 +81,15 @@ int		ft_count_words(char const *s, char c)
 				is_word = 0;
 				count++;
 			}
-		} else
+		}
+		else
 		{
 			if (is_word == 0)
 				is_word = 1;
 		}
 		i++;
 	}
+	if (s[i - 1] != c)
+		count++;
 	return (count);
 }

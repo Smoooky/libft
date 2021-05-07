@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
 	char			*res;
@@ -8,7 +8,7 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	while (s[i] != '\0')
 		i++;
-	res = (char *) malloc(sizeof (char)*(i + 1));
+	res = (char *)malloc(sizeof(char) * (i + 1));
 	if (NULL == res)
 		return (NULL);
 	res[i] = '\0';
