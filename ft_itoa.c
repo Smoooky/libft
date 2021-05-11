@@ -1,51 +1,52 @@
 #include "libft.h"
 
+static unsigned short	ft_countsize(long long t);
+
 char	*ft_itoa(int n)
 {
-	int		i;
-	int		is_pos;
-	int		str_size;
-	char	*res;
+	char			*res;
+	long long		t;
+	unsigned short	size;
 
-	str_size = 0;
-	if (n == -2147483648)
-	{
-		res = (char *) malloc(sizeof(char) * 12);
-		if (NULL == res)
-			return (NULL);
-		res = "-2147483648";
-//		res[11] = '\0';
-		return (res);
-	}
-	else if (n < 0)
-	{
-		is_pos = 0;
-		n = n * -1;
-		str_size++;
-	}
-	else
-		is_pos = 1;
-	i = n;
-	while (i / 10 > 0)
-	{
-		str_size++;
-		i = i / 10;
-	}
-	str_size++;
-	res = (char*)malloc(sizeof(char)*(str_size + 1));
+	t = n;
+	size = ft_countsize(t);
+	res = (char *) malloc(sizeof(char) * (size + 1));
 	if (NULL == res)
 		return (NULL);
-	res[str_size] = '\0';
-	str_size--;
-	while (n / 10 > 0)
+	res[size] = '\0';
+	size = size - 1;
+	if (t < 0)
 	{
-		res[str_size] = '0' + n % 10;
-		n = n / 10;
-		str_size--;
+		res[0] = '-';
+		t = t * -1;
 	}
-	res[str_size] = '0' + n % 10;
-	str_size--;
-	if (is_pos == 0)
-		res[str_size] = '-';
+	if (t == 0)
+		res[0] = '0';
+	while (t > 0)
+	{
+		res[size] = (t % 10) + '0';
+		t = t / 10;
+		size--;
+	}
+	return (res);
+}
+
+static unsigned short	ft_countsize(long long n)
+{
+	unsigned short	res;
+
+	res = 0;
+	if (n == 0)
+		res++;
+	if (n < 0)
+	{
+		n = n * -1;
+		res++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		res++;
+	}
 	return (res);
 }

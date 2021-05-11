@@ -1,47 +1,32 @@
 #include "libft.h"
 
-int		ft_count_words(char const *s, char c);
-char	*ft_add_word(char const *word_star, int len);
+int			ft_count_words(char const *s, char c);
+char		*ft_add_word(char const *word_star, int len);
+static int	ft_wordlen(char const *s, char c);
+static void	ft_free_res(char **str);
 
 char	**ft_split(char const *s, char c)
 {
-	int is_word;
-	int count;
-	int i;
-	int w_len;
-	char **res;
+	int		next;
+	int		count;
+	char	**res;
 
+	next = 0;
 	count = ft_count_words(s, c);
-	res = (char**)malloc(sizeof(char*)*(count+1));
+	res = (char **)malloc(sizeof(char *) * (count + 1));
 	if (NULL == res)
 		return (NULL);
-	res[count] = NULL;
-	count = 0;
-	i = 0;
-	is_word = 0;
-	w_len = 0;
-	while (s[i] != '\0')
+	while (next < count)
 	{
-		if (s[i] == c)
-		{
-			if (is_word == 1)
-			{
-				is_word = 0;
-				res[count] = ft_add_word(&s[i - w_len], w_len);
-				w_len = 0;
-				count++;
-			}
-		}
-		else
-		{
-			if (is_word == 0)
-				is_word = 1;
-			w_len++;
-		}
-		i++;
+		while (*s != '\0' && *s == c)
+			s++;
+		res[next] = ft_add_word(s, ft_wordlen(s, c));
+		if (NULL == res[next])
+			ft_free_res(res);
+		s = s + ft_wordlen(s, c);
+		next++;
 	}
-	if (s[i - 1] != c)
-		res[count] = ft_add_word(&s[i - w_len], w_len);
+	res[next] = NULL;
 	return (res);
 }
 
@@ -51,7 +36,7 @@ char	*ft_add_word(char const *word_star, int len)
 	char	*res;
 
 	i = 0;
-	res = (char*)malloc(sizeof(char)*(len+1));
+	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (NULL == res)
 		return (NULL);
 	while (i != len)
@@ -60,14 +45,29 @@ char	*ft_add_word(char const *word_star, int len)
 		i++;
 	}
 	res[i] = '\0';
-	return res;
+	return (res);
 }
 
-int		ft_count_words(char const *s, char c)
+static int	ft_wordlen(char const *s, char c)
 {
-	int is_word;
-	int count;
-	int i;
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (s[i] != '\0' && s[i] != c)
+	{
+		res++;
+		i++;
+	}
+	return (res);
+}
+
+int	ft_count_words(char const *s, char c)
+{
+	int	is_word;
+	int	count;
+	int	i;
 
 	i = 0;
 	count = 0;
@@ -75,21 +75,26 @@ int		ft_count_words(char const *s, char c)
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
+			is_word = 0;
+		if (s[i] != c && is_word == 0)
 		{
-			if (is_word == 1)
-			{
-				is_word = 0;
-				count++;
-			}
-		}
-		else
-		{
-			if (is_word == 0)
-				is_word = 1;
+			count++;
+			is_word = 1;
 		}
 		i++;
 	}
-	if (s[i - 1] != c)
-		count++;
 	return (count);
+}
+
+static void	ft_free_res(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

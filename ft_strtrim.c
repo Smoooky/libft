@@ -1,117 +1,28 @@
 #include "libft.h"
 
-static size_t	ft_countlen(char const *str);
-static char		*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set);
-static char		*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set);
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	len_s1;
-	size_t	len_set;
-	char	*sub_res;
+	size_t	beg;
+	size_t	count;
 	char	*res;
 
-	len_s1 = ft_countlen(s1);
-	len_set = ft_countlen(set);
-	if (len_s1 == 0)
-		return ("");
-	sub_res = ft_trim_left(s1, set, len_s1, len_set);
-	if (sub_res == NULL)
-		return (NULL);
-	len_s1 = ft_countlen(sub_res);
-	res = ft_trim_right(sub_res, set, len_s1, len_set);
+	count = 0;
+	beg = 0;
+	len_s1 = ft_strlen(s1);
+	while (s1[beg] != '\0' && ft_strchr(set, s1[beg]))
+		beg++;
+	while (beg < len_s1 && ft_strchr(set, s1[len_s1 - 1]))
+		len_s1--;
+	res = (char *) malloc(sizeof(char) * (len_s1 - beg + 1));
 	if (res == NULL)
 		return (NULL);
-	free(sub_res);
+	while (beg < len_s1)
+	{
+		res[count] = s1[beg];
+		beg++;
+		count++;
+	}
+	res[count] = '\0';
 	return (res);
-}
-
-static char	*ft_trim_left(char const *s1, char const *set, size_t len_s1, size_t len_set)
-{
-	size_t	i;
-	size_t	j;
-	size_t	to_del;
-	char	*res;
-
-	i = 0;
-	to_del = 0;
-	while(i != len_s1 && j != len_set)
-	{
-		j = 0;
-		while (j != len_set)
-		{
-			if (s1[i] == set[j])
-			{
-				to_del++;
-				break;
-			}
-			j++;
-		}
-		i++;
-	}
-	res = (char *)malloc(sizeof(char)*(len_s1 - to_del + 1));
-	if (NULL == res)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (i != to_del)
-		i++;
-	while (i != len_s1)
-	{
-		res[j] = s1[i];
-		i++;
-		j++;
-	}
-	res[j] = '\0';
-	return (res);
-}
-
-static char	*ft_trim_right(char const *s1, char const *set, size_t len_s1, size_t len_set)
-{
-	size_t	i;
-	size_t	j;
-	size_t	to_del;
-	char	*res;
-
-	i = len_s1 - 1;
-	to_del = 0;
-	while(i != 0 && j != len_set)
-	{
-		j = 0;
-		while (j != len_set)
-		{
-			if (s1[i] == set[j])
-			{
-				to_del++;
-				break;
-			}
-			j++;
-		}
-		i--;
-	}
-	res = (char *)malloc(sizeof(char)*(len_s1 - to_del + 1));
-	if (NULL == res)
-		return (NULL);
-	i = len_s1 - to_del + 1;
-	while (i != 0)
-	{
-		res[i] = s1[i];
-		i--;
-	}
-	res[len_s1 - to_del] = '\0';
-	res[0] = s1[0];
-	return (res);
-}
-
-static size_t	ft_countlen(char const *str)
-{
-	size_t	i;
-
-	i = 0;
-	while(*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return(i);
 }
