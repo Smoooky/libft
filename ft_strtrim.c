@@ -9,6 +9,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	count = 0;
 	beg = 0;
+	if (!s1 || !set)
+		return (NULL);
 	len_s1 = ft_strlen(s1);
 	while (s1[beg] != '\0' && ft_strchr(set, s1[beg]))
 		beg++;

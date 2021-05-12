@@ -8,8 +8,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	len_s;
 	size_t	j;
 
+	if (NULL == s)
+		return (NULL);
 	len_s = ft_countlen(s);
 	j = 0;
+	if (len_s < len)
+		len = len_s;
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (res == NULL)
 		return (NULL);

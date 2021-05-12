@@ -6,18 +6,19 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*res;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i] != '\0')
 		i++;
 	res = (char *)malloc(sizeof(char) * (i + 1));
 	if (NULL == res)
 		return (NULL);
-	res[i] = '\0';
-	i--;
-	while (i != 0)
+	i = 0;
+	while (s[i] != '\0')
 	{
 		res[i] = f(i, s[i]);
-		i--;
+		i++;
 	}
-	res[0] = f(i, s[0]);
+	res[i] = '\0';
 	return (res);
 }

@@ -8,6 +8,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	j;
 	char	*res;
 
+	if (!s1 || !s2)
+		return (NULL);
 	res = sub_ft_strjoin(s1, s2);
 	i = 0;
 	j = 0;
