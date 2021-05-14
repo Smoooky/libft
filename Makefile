@@ -14,20 +14,20 @@ SRC		= ft_atoi.c ft_bzero.c ft_calloc.c \
 		ft_strncmp.c ft_strnstr.c ft_strrchr.c \
 		ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
-OBJ = ${SRC:.c=.o}
+OBJ = $(SRC:.c=.o)
 
-all: 	    ${NAME}
+all: 	    $(NAME)
 
-$(NAME):    ${OBJ} libft.h
-		    ar rcs ${NAME} $?
+$(NAME):    $(OBJ) libft.h
+		    ar rcs $(NAME) $?
 .c.o:
-		    gcc ${FLAGS} -c $< -o ${<:.c=.o}
+		    gcc $(FLAGS) -c $< -o $(<:.c=.o)
 
 clean:
-		    rm -rf ${OBJ}
+		    rm -rf $(OBJ)
 
 fclean:     clean
-		    rm -rf ${NAME}
+		    rm -rf $(NAME)
 
 re: 	    fclean all
 
