@@ -1,47 +1,26 @@
 #include "libft.h"
 
-static char	*sub_ft_strjoin(char const *s1, char const *s2);
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*res;
+	size_t	len_a;
+	size_t	len_b;
+	size_t	len_sum;
+	char	*str;
 
-	if (!s1 || !s2)
-		return (NULL);
-	res = sub_ft_strjoin(s1, s2);
-	i = 0;
-	j = 0;
-	if (res == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (s2[j] != '\0')
-	{
-		res[i] = s2[j];
-		i++;
-		j++;
-	}
-	res[i] = '\0';
-	return (res);
-}
-
-static char	*sub_ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	i;
-	size_t	j;
-	char	*res;
-
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
-		j++;
-	res = (char *)malloc(i + j + 1);
-	return (res);
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	len_a = ft_strlen(s1);
+	len_b = ft_strlen((char *)s2);
+	len_sum = len_a + len_b + 1;
+	str = malloc(sizeof(char) * len_sum);
+	if (!str)
+		return (0);
+	ft_memmove(str, s1, len_a);
+	ft_memmove(str + len_a, s2, len_b);
+	str[len_sum - 1] = '\0';
+	return (str);
 }

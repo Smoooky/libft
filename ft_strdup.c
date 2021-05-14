@@ -21,6 +21,5 @@ char	*ft_strdup(const char *s1)
 		p[i] = s1[i];
 		return (p);
 	}
-	else
-		return (NULL);
+	return (NULL);
 }

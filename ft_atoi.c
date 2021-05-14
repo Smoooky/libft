@@ -32,7 +32,7 @@ static int	ft_sub_atoi(const char *str, int i, int sign)
 	res = 0;
 	dig = 0;
 	tens = 1;
-	while (str[i] > 47 && str[i] < 58)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		dig++;
 		i++;

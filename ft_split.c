@@ -1,9 +1,9 @@
 #include "libft.h"
 
-int			ft_count_words(char const *s, char c);
-char		*ft_add_word(char const *word_star, int len);
+static int	ft_count_words(char const *s, char c);
+static char	*ft_add_word(char const *word_star, int len);
 static int	ft_wordlen(char const *s, char c);
-static void	ft_free_res(char **str);
+static char	**ft_free_res(char **str);
 
 char	**ft_split(char const *s, char c)
 {
@@ -24,7 +24,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		res[next] = ft_add_word(s, ft_wordlen(s, c));
 		if (NULL == res[next])
-			ft_free_res(res);
+			return (ft_free_res(res));
 		s = s + ft_wordlen(s, c);
 		next++;
 	}
@@ -32,7 +32,7 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-char	*ft_add_word(char const *word_star, int len)
+static char	*ft_add_word(char const *word_star, int len)
 {
 	int		i;
 	char	*res;
@@ -65,7 +65,7 @@ static int	ft_wordlen(char const *s, char c)
 	return (res);
 }
 
-int	ft_count_words(char const *s, char c)
+static int	ft_count_words(char const *s, char c)
 {
 	int	is_word;
 	int	count;
@@ -88,7 +88,7 @@ int	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-static void	ft_free_res(char **str)
+static char	**ft_free_res(char **str)
 {
 	int	i;
 
@@ -99,4 +99,5 @@ static void	ft_free_res(char **str)
 		i++;
 	}
 	free(str);
+	return (NULL);
 }

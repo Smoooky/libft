@@ -16,6 +16,5 @@ void	*ft_calloc(size_t count, size_t size)
 		}
 		return ((void *)p);
 	}
-	else
-		return (NULL);
+	return (NULL);
 }
