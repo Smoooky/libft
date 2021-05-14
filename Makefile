@@ -18,7 +18,7 @@ OBJ = ${SRC:.c=.o}
 
 all: 	    ${NAME}
 
-${NAME}:    ${OBJ} libft.h
+$(NAME):    ${OBJ} libft.h
 		    ar rcs ${NAME} $?
 .c.o:
 		    gcc ${FLAGS} -c $< -o ${<:.c=.o}
